@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Materials - IDEAL EDUPRINT-HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #0d2b4a 100%);
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(56, 189, 248, 0.1) 0%, transparent 40%);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            background: linear-gradient(135deg, #00ffc8, #00b894);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10px, 20px) rotate(-3deg); }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-badge {
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            color: #00d4ff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+        }
+
+        .container {
+            min-height: calc(100vh - 90px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .faculty-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInDown 0.6s ease-out 0.2s both;
+        }
+
+        .info-badge {
+            padding: 8px 20px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            color: #00d4ff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module-card {
+            position: relative;
+            padding: 4px;
+            background: linear-gradient(135deg, #00d4ff, #00ffc8, #a855f7, #00d4ff);
+            background-size: 300% 300%;
+            animation: borderGradient 4s ease infinite;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #0d2b4a 100%);
+            border-radius: 27px;
+            z-index: -1;
+        }
+
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .module-content {
+            padding: 50px 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+        }
+
+        .module-icon {
+            font-size: 80px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .module-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .module-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .module-card.upload .module-title {
+            color: #00d4ff;
+        }
+
+        .module-card.generate .module-title {
+            color: #00ffc8;
+        }
+
+        .module-card.generate:hover {
+            box-shadow: 0 25px 60px rgba(0, 255, 200, 0.3);
+        }
+
+        /* Upload Section Styles */
+        .upload-section {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .upload-section.active {
+            display: block;
+        }
+
+        .upload-card {
+            position: relative;
+            padding: 4px;
+            background: linear-gradient(135deg, #00d4ff, #00ffc8, #00d4ff);
+            background-size: 300% 300%;
+            animation: borderGradient 4s ease infinite;
+            border-radius: 30px;
+        }
+
+        .upload-card::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 27px;
+            z-index: -1;
+        }
+
+        .upload-card-inner {
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(0, 212, 255, 0.5);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .upload-area:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .upload-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 18px;
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #1a1a3e;
+            color: #fff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%);
+            color: #0c0c1e;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Generate Section Styles */
+        .generate-section {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .generate-section.active {
+            display: block;
+        }
+
+        .generate-card {
+            position: relative;
+            padding: 4px;
+            background: linear-gradient(135deg, #00ffc8, #00d4ff, #00ffc8);
+            background-size: 300% 300%;
+            animation: borderGradient 4s ease infinite;
+            border-radius: 30px;
+        }
+
+        .generate-card::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 27px;
+            z-index: -1;
+        }
+
+        .generate-card-inner {
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+        }
+
+        .generate-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .generate-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-option:hover {
+            border-color: #00ffc8;
+            background: rgba(0, 255, 200, 0.05);
+        }
+
+        .generate-option.selected {
+            border-color: #00ffc8;
+            background: rgba(0, 255, 200, 0.1);
+        }
+
+        .option-radio {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .generate-option.selected .option-radio {
+            border-color: #00ffc8;
+        }
+
+        .generate-option.selected .option-radio::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: #00ffc8;
+            border-radius: 50%;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .option-desc {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(0, 212, 255, 0.1);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .user-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 20px;
+            }
+
+            .module-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .faculty-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .upload-card-inner, .generate-card-inner {
+                padding: 25px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">📚</div>
+            <span class="logo-text">IDEAL EDUPRINT-HUB</span>
+        </a>
+        <div class="user-info">
+            <div class="user-badge" id="user-badge">Welcome, Faculty</div>
+<a href="faculty_uploads.html" class="back-btn">My Uploads</a>
+            <a href="login.html" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Main Modules View -->
+        <div id="modules-view">
+            <div class="page-title">
+                <h1>Faculty Materials</h1>
+                <p>Choose an action to proceed</p>
+            </div>
+
+            <div class="faculty-info">
+                <div class="info-badge" id="year-display">Year: -</div>
+                <div class="info-badge" id="branch-display">Branch: -</div>
+                <div class="info-badge" id="regulation-display">Regulation: -</div>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card upload" onclick="showUploadSection()">
+                    <div class="module-content">
+                        <span class="module-icon">📤</span>
+                        <h2 class="module-title">Upload Material</h2>
+                        <p class="module-desc">Upload study materials, notes, question papers, and other documents for students</p>
+                    </div>
+                </div>
+
+<div class="module-card generate" onclick="window.location.href='generate_material.html'">
+                    <div class="module-content">
+                        <span class="module-icon">⚙️</span>
+                        <h2 class="module-title">Generate Material</h2>
+                        <p class="module-desc">Generate customized study materials, worksheets, and practice papers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div id="upload-section" class="upload-section">
+            <button class="back-btn" onclick="showModulesView()">
+                ← Back to Modules
+            </button>
+            <div class="upload-card">
+                <div class="upload-card-inner">
+                    <h2 style="color: #fff; font-size: 1.5rem; margin-bottom: 25px; text-align: center;">Upload Material</h2>
+                    
+                    <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                        <span class="upload-icon">📁</span>
+                        <p class="upload-text">Click to upload or drag and drop</p>
+                        <p class="upload-hint">PDF, DOC, DOCX, PPT, PPTX (Max 10MB)</p>
+                        <input type="file" id="file-input" style="display: none;" onchange="handleFileSelect(event)">
+                    </div>
+
+                    <div id="selected-file" style="display: none; text-align: center; margin-bottom: 20px; padding: 10px; background: rgba(0, 212, 255, 0.1); border-radius: 10px;">
+                        <span style="color: #00d4ff;">📄 </span>
+                        <span id="file-name" style="color: #fff;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Material Type</label>
+                        <select class="form-select" id="material-type">
+                            <option value="">Select Type</option>
+                            <option value="notes">Notes</option>
+                            <option value="question-paper">Question Paper</option>
+                            <option value="assignment">Assignment</option>
+                            <option value="presentation">Presentation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input type="text" class="form-input" id="subject" placeholder="Enter subject name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description (Optional)</label>
+                        <input type="text" class="form-input" id="description" placeholder="Brief description of the material">
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="showModulesView()">Cancel</button>
+                        <button class="btn btn-primary" onclick="uploadMaterial()">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Section -->
+        <div id="generate-section" class="generate-section">
+            <button class="back-btn" onclick="showModulesView()">
+                ← Back to Modules
+            </button>
+            <div class="generate-card">
+                <div class="generate-card-inner">
+                    <h2 style="color: #fff; font-size: 1.5rem; margin-bottom: 25px; text-align: center;">Generate Material</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input type="text" class="form-input" id="gen-subject" placeholder="Enter subject name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select Generation Type</label>
+                        <div class="generate-options">
+                            <div class="generate-option" onclick="selectGenerateOption(this, 'worksheet')">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <h3 class="option-title">Worksheet</h3>
+                                    <p class="option-desc">Generate practice worksheets with questions</p>
+                                </div>
+                            </div>
+                            <div class="generate-option" onclick="selectGenerateOption(this, 'question-bank')">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <h3 class="option-title">Question Bank</h3>
+                                    <p class="option-desc">Create a collection of questions</p>
+                                </div>
+                            </div>
+                            <div class="generate-option" onclick="selectGenerateOption(this, 'study-guide')">
+                                <div class="option-radio"></div>
+                                <div class="option-content">
+                                    <h3 class="option-title">Study Guide</h3>
+                                    <p class="option-desc">Generate comprehensive study materials</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Number of Questions</label>
+                        <select class="form-select" id="num-questions">
+                            <option value="10">10 Questions</option>
+                            <option value="20">20 Questions</option>
+                            <option value="30">30 Questions</option>
+                            <option value="50">50 Questions</option>
+                        </select>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="showModulesView()">Cancel</button>
+                        <button class="btn btn-primary" onclick="generateMaterial()">Generate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var selectedFile = null;
+        var selectedGenerateType = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display faculty info
+            const year = sessionStorage.getItem('facultyYear');
+            const branch = sessionStorage.getItem('facultyBranch');
+            const regulation = sessionStorage.getItem('facultyRegulation');
+            
+            document.getElementById('year-display').textContent = 'Year: ' + (year ? getYearName(year) : '-');
+            document.getElementById('branch-display').textContent = 'Branch: ' + (branch || '-');
+            document.getElementById('regulation-display').textContent = 'Regulation: ' + (regulation || '-');
+        });
+
+        function getYearName(year) {
+            const yearNames = {
+                '1': '1st Year',
+                '2': '2nd Year',
+                '3': '3rd Year',
+                '4': '4th Year'
+            };
+            return yearNames[year] || year;
+        }
+
+        function showModulesView() {
+            document.getElementById('modules-view').classList.remove('hidden');
+            document.getElementById('upload-section').classList.remove('active');
+            document.getElementById('generate-section').classList.remove('active');
+        }
+
+        function showUploadSection() {
+            document.getElementById('modules-view').classList.add('hidden');
+            document.getElementById('upload-section').classList.add('active');
+            document.getElementById('generate-section').classList.remove('active');
+        }
+
+        function showGenerateSection() {
+            document.getElementById('modules-view').classList.add('hidden');
+            document.getElementById('upload-section').classList.remove('active');
+            document.getElementById('generate-section').classList.add('active');
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Check file size (limit to 5MB for localStorage)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                    return;
+                }
+                
+                // Store file info
+                selectedFile = {
+                    name: file.name,
+                    type: file.type,
+                    size: file.size
+                };
+                
+                // Convert file to base64 for storage
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedFile.data = e.target.result; // base64 encoded data
+                    document.getElementById('file-name').textContent = file.name + ' (' + formatFileSize(file.size) + ')';
+                    document.getElementById('selected-file').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function uploadMaterial() {
+            const materialType = document.getElementById('material-type').value;
+            const subject = document.getElementById('subject').value;
+            const description = document.getElementById('description').value;
+
+            if (!selectedFile) {
+                alert('Please select a file to upload');
+                return;
+            }
+
+            if (!materialType) {
+                alert('Please select material type');
+                return;
+            }
+
+            if (!subject) {
+                alert('Please enter subject name');
+                return;
+            }
+
+            // Prepare upload data
+            const uploadData = {
+                type: 'upload',
+                fileName: selectedFile.name,
+                fileType: selectedFile.type,
+                fileSize: selectedFile.size,
+                fileData: selectedFile.data,
+                materialType: materialType,
+                subject: subject,
+                description: description,
+                year: sessionStorage.getItem('facultyYear'),
+                branch: sessionStorage.getItem('facultyBranch'),
+                regulation: sessionStorage.getItem('facultyRegulation'),
+                date: new Date().toISOString(),
+                status: 'Pending'
+            };
+
+            // Send to server instead of localStorage
+            fetch('/api/faculty/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(uploadData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Material uploaded successfully!');
+                
+                // Reset form
+                selectedFile = null;
+                document.getElementById('file-input').value = '';
+                document.getElementById('selected-file').style.display = 'none';
+                document.getElementById('material-type').value = '';
+                document.getElementById('subject').value = '';
+                document.getElementById('description').value = '';
+                
+                showModulesView();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to upload material. Please try again.');
+            });
+        }
+
+        function selectGenerateOption(element, type) {
+            document.querySelectorAll('.generate-option').forEach(function(opt) {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedGenerateType = type;
+        }
+
+        function generateMaterial() {
+            const subject = document.getElementById('gen-subject').value;
+            const numQuestions = document.getElementById('num-questions').value;
+
+            if (!subject) {
+                alert('Please enter subject name');
+                return;
+            }
+
+            if (!selectedGenerateType) {
+                alert('Please select a generation type');
+                return;
+            }
+
+            // Prepare generate request
+            const generateData = {
+                type: 'generate',
+                generationType: selectedGenerateType,
+                subject: subject,
+                numQuestions: numQuestions,
+                year: sessionStorage.getItem('facultyYear'),
+                branch: sessionStorage.getItem('facultyBranch'),
+                regulation: sessionStorage.getItem('facultyRegulation'),
+                date: new Date().toISOString(),
+                status: 'Processing'
+            };
+
+            // Send to server instead of localStorage
+            fetch('/api/faculty/generate-material', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(generateData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Material generation started! You will be notified when ready.');
+                
+                // Reset form
+                document.getElementById('gen-subject').value = '';
+                document.getElementById('num-questions').value = '10';
+                document.querySelectorAll('.generate-option').forEach(function(opt) {
+                    opt.classList.remove('selected');
+                });
+                selectedGenerateType = null;
+                
+                showModulesView();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to start generation. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

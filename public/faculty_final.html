@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Selection - IDEAL EDUPRINT-HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; min-height: 100vh; background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #0d2b4a 100%); }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);  }
+        .back-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; color: #00d4ff; text-decoration: none; font-weight: 500; border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 25px; background: rgba(0, 212, 255, 0.1); }
+        .container { min-height: calc(100vh - 90px); display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .selection-card { position: relative; padding: 4px; background: linear-gradient(135deg, #00d4ff, #00ffc8); border-radius: 28px; }
+        .selection-card-inner { padding: 50px; width: 100%; max-width: 480px; background: rgba(0, 0, 0, 0.5); border-radius: 24px; }
+        .selection-title { text-align: center; margin-bottom: 40px; }
+        .selection-title h1 { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .selection-title p { color: rgba(255, 255, 255, 0.6); font-size: 1rem; }
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; color: rgba(255, 255, 255, 0.7); font-size: 14px; font-weight: 500; margin-bottom: 10px; }
+        .form-select { width: 100%; padding: 16px 20px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 15px; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 15px center; background-size: 18px; cursor: pointer; }
+        .form-select:focus { outline: none; border-color: #00d4ff; }
+        .form-select option { background: #1a1a3e; color: #fff; }
+        .submit-btn { width: 100%; padding: 18px; background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%); border: none; border-radius: 12px; color: #0c0c1e; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo"><div class="logo-icon">📚</div><span class="logo-text">IDEAL EDUPRINT-HUB</span></a>
+        <a href="login_updated.html" class="back-btn">← Back to Login</a>
+    </header>
+    <div class="container">
+        <div class="selection-card">
+            <div class="selection-card-inner">
+                <div class="selection-title">
+                    <h1>Faculty Details</h1>
+                    <p>Select your year, branch and regulation</p>
+                </div>
+                <form onsubmit="handleSelection(event)">
+                    <div class="form-group">
+                        <label class="form-label">Select Year</label>
+                        <select class="form-select" id="year-select" required>
+                            <option value="">Choose Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select Branch</label>
+                        <select class="form-select" id="branch-select" required>
+                            <option value="">Choose Branch</option>
+                            <option value="CSE">CSE - Computer Science Engineering</option>
+                            <option value="CSE-AIML">CSE(AI-ML) - Artificial Intelligence & Machine Learning</option>
+                            <option value="ECE">ECE - Electronics and Communication Engineering</option>
+                            <option value="MECH">MECH - Mechanical Engineering</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select Regulation</label>
+                        <select class="form-select" id="regulation-select" required>
+                            <option value="">Choose Regulation</option>
+                            <option value="R20">R20</option>
+                            <option value="R23">R23</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        initAuth();
+        
+        async function handleSelection(event) {
+            event.preventDefault();
+            const year = document.getElementById('year-select').value;
+            const branch = document.getElementById('branch-select').value;
+            const regulation = document.getElementById('regulation-select').value;
+            if (!year || !branch || !regulation) {
+                alert('Please select year, branch and regulation');
+                return;
+            }
+            
+            try {
+                const response = await apiCall('/api/faculty/save-profile', {
+                    method: 'POST',
+                    body: JSON.stringify({ year, branch, regulation })
+                });
+                
+                if (response.success) {
+                    localStorage.setItem('facultyProfile', JSON.stringify({ year, branch, regulation }));
+                    window.location.href = 'faculty_materials.html';
+                } else {
+                    alert('Save failed: ' + response.message);
+                }
+            } catch (error) {
+                console.error('Save profile error:', error);
+                localStorage.setItem('facultyProfile', JSON.stringify({ year, branch, regulation }));
+                window.location.href = 'faculty_materials.html'; // Fallback
+            }
+        }
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

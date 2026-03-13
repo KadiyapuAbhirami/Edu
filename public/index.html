@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to IDEAL EDUPRINT-HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+
+        <div class="content">
+            <div class="badge">✨ Welcome ✨</div>
+            <h1>IDEAL EDUPRINT-HUB</h1>
+            <div class="decorative-line"></div>
+            <p class="subtitle">
+                Your premier destination for <span>educational printing solutions</span>. 
+                We combine innovation with excellence to deliver outstanding printing services 
+                that empower learning and inspire success.
+            </p>
+
+            <!-- Scroll Arrow -->
+            <div class="scroll-arrow" onclick="scrollToFeatures()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </div>
+
+            <div class="cta-container">
+                <a href="login.html" class="cta-button">Explore Our Services</a>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-icon">🎓</span>
+                    <span class="feature-text">Quality Education Materials</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🖨️</span>
+                    <span class="feature-text">Advanced Printing Technology</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📦</span>
+                    <span class="feature-text">Fast & Reliable Delivery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToFeatures() {
+            const features = document.querySelector('.features');
+            features.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    </script>
+</body>
+</html>

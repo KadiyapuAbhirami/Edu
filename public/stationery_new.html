@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationery Items - IDEAL EDUPRINT-HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #0d2b4a 100%);
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(56, 189, 248, 0.1) 0%, transparent 40%);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 10%;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            background: linear-gradient(135deg, #00ffc8, #00b894);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10px, 20px) rotate(-3deg); }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .user-badge {
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            color: #00d4ff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%);
+            color: #0c0c1e;
+        }
+
+        .nav-btn.logout {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+        }
+
+        .container {
+            min-height: calc(100vh - 90px);
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ffc8;
+            margin-bottom: 25px;
+            padding-left: 10px;
+            border-left: 4px solid #00ffc8;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .item-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .item-card.selected {
+            border-color: #00ffc8;
+            background: rgba(0, 255, 200, 0.1);
+        }
+
+        .item-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .item-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .qty-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-section {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(12, 12, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .cart-info {
+            color: #fff;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cart-count {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cart-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffc8 100%);
+            border: none;
+            border-radius: 30px;
+            color: #0c0c1e;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .cart-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding-bottom: 100px;
+            }
+
+            .cart-section {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .cart-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">📚</div>
+            <span class="logo-text">IDEAL EDUPRINT-HUB</span>
+        </a>
+        <div class="nav-links">
+            <div class="user-badge" id="user-badge">Welcome, Student</div>
+            <a href="order.html" class="nav-btn">← Back</a>
+            <a href="login.html" class="nav-btn logout">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>Stationery Items</h1>
+            <p>Select items and quantities to order</p>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">Pens</h2>
+            <div class="items-grid" id="pens-grid">
+                <div class="item-card" data-item="pen-black" data-name="Pen (Black)" data-price="5">
+                    <span class="item-icon">⚫</span>
+                    <h3 class="item-name">Pen (Black)</h3>
+                    <p class="item-price">₹<span class="price-value">5</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('pen-black', -1)">-</button>
+                        <span class="qty-value" id="qty-pen-black">0</span>
+                        <button class="qty-btn" onclick="changeQty('pen-black', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="pen-blue" data-name="Pen (Blue)" data-price="5">
+                    <span class="item-icon">🔵</span>
+                    <h3 class="item-name">Pen (Blue)</h3>
+                    <p class="item-price">₹<span class="price-value">5</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('pen-blue', -1)">-</button>
+                        <span class="qty-value" id="qty-pen-blue">0</span>
+                        <button class="qty-btn" onclick="changeQty('pen-blue', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="pen-red" data-name="Pen (Red)" data-price="5">
+                    <span class="item-icon">🔴</span>
+                    <h3 class="item-name">Pen (Red)</h3>
+                    <p class="item-price">₹<span class="price-value">5</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('pen-red', -1)">-</button>
+                        <span class="qty-value" id="qty-pen-red">0</span>
+                        <button class="qty-btn" onclick="changeQty('pen-red', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">Pencils & Erasers</h2>
+            <div class="items-grid" id="pencils-grid">
+                <div class="item-card" data-item="pencil" data-name="Pencil" data-price="3">
+                    <span class="item-icon">✏️</span>
+                    <h3 class="item-name">Pencil</h3>
+                    <p class="item-price">₹<span class="price-value">3</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('pencil', -1)">-</button>
+                        <span class="qty-value" id="qty-pencil">0</span>
+                        <button class="qty-btn" onclick="changeQty('pencil', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="eraser" data-name="Eraser" data-price="2">
+                    <span class="item-icon">🧹</span>
+                    <h3 class="item-name">Eraser</h3>
+                    <p class="item-price">₹<span class="price-value">2</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('eraser', -1)">-</button>
+                        <span class="qty-value" id="qty-eraser">0</span>
+                        <button class="qty-btn" onclick="changeQty('eraser', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">Notebooks</h2>
+            <div class="items-grid" id="books-grid">
+                <div class="item-card" data-item="book20" data-name="Notebook (120 Pages)" data-price="20">
+                    <span class="item-icon">📓</span>
+                    <h3 class="item-name">Notebook (120 Pages)</h3>
+                    <p class="item-price">₹<span class="price-value">20</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('book20', -1)">-</button>
+                        <span class="qty-value" id="qty-book20">0</span>
+                        <button class="qty-btn" onclick="changeQty('book20', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="book25" data-name="Notebook (200 Pages)" data-price="25">
+                    <span class="item-icon">📔</span>
+                    <h3 class="item-name">Notebook (200 Pages)</h3>
+                    <p class="item-price">₹<span class="price-value">25</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('book25', -1)">-</button>
+                        <span class="qty-value" id="qty-book25">0</span>
+                        <button class="qty-btn" onclick="changeQty('book25', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="book30" data-name="Practical Book" data-price="30">
+                    <span class="item-icon">📕</span>
+                    <h3 class="item-name">Records</h3>
+                    <p class="item-price">₹<span class="price-value">130</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('book30', -1)">-</button>
+                        <span class="qty-value" id="qty-book130">0</span>
+                        <button class="qty-btn" onclick="changeQty('book130', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">Registers & Files</h2>
+            <div class="items-grid" id="registers-grid">
+                <div class="item-card" data-item="register" data-name="Register (200 Pages)" data-price="50">
+                    <span class="item-icon">📒</span>
+                    <h3 class="item-name">Register (200 Pages)</h3>
+                    <p class="item-price">₹<span class="price-value">50</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('register', -1)">-</button>
+                        <span class="qty-value" id="qty-register">0</span>
+                        <button class="qty-btn" onclick="changeQty('register', 1)">+</button>
+                    </div>
+                </div>
+                <div class="item-card" data-item="file" data-name="File Folder" data-price="15">
+                    <span class="item-icon">📁</span>
+                    <h3 class="item-name">File Folder</h3>
+                    <p class="item-price">₹<span class="price-value">15</span></p>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty('file', -1)">-</button>
+                        <span class="qty-value" id="qty-file">0</span>
+                        <button class="qty-btn" onclick="changeQty('file', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-section" id="cart-section" style="display: none;">
+        <div class="cart-info">
+            <p class="cart-total">Total: ₹<span id="cart-total">0</span></p>
+            <p class="cart-count"><span id="cart-count">0</span> items in cart</p>
+        </div>
+        <button class="cart-btn" onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <script>
+        var defaultPrices = {
+            'pen-black': 5,
+            'pen-blue': 5,
+            'pen-red': 5,
+            pencil: 3,
+            eraser: 2,
+            book20: 20,
+            book25: 25,
+            book30: 30,
+            register: 50,
+            file: 15
+        };
+
+        var cart = {};
+        var prices = {};
+
+        function loadPrices() {
+            var stored = localStorage.getItem('stationeryPrices');
+            if (stored) {
+                prices = JSON.parse(stored);
+            } else {
+                prices = JSON.parse(JSON.stringify(defaultPrices));
+            }
+            
+            document.querySelectorAll('.item-card').forEach(function(card) {
+                var itemId = card.dataset.item;
+                var priceSpan = card.querySelector('.price-value');
+                if (prices[itemId]) {
+                    priceSpan.textContent = prices[itemId];
+                    card.dataset.price = prices[itemId];
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPrices();
+            
+            var userType = sessionStorage.getItem('userType') || 'student';
+            document.getElementById('user-badge').textContent = 'Welcome, ' + userType.charAt(0).toUpperCase() + userType.slice(1);
+        });
+
+        function changeQty(itemId, delta) {
+            if (!cart[itemId]) cart[itemId] = 0;
+            
+            cart[itemId] += delta;
+            if (cart[itemId] < 0) cart[itemId] = 0;
+            
+            document.getElementById('qty-' + itemId).textContent = cart[itemId];
+            
+            var card = document.querySelector('[data-item="' + itemId + '"]');
+            if (cart[itemId] > 0) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+            
+            updateCart();
+        }
+
+        function updateCart() {
+            var total = 0;
+            var count = 0;
+            
+            for (var itemId in cart) {
+                var qty = cart[itemId];
+                if (qty > 0) {
+                    var price = prices[itemId] || 0;
+                    total += price * qty;
+                    count += qty;
+                }
+            }
+            
+            var cartSection = document.getElementById('cart-section');
+            if (count > 0) {
+                cartSection.style.display = 'flex';
+            } else {
+                cartSection.style.display = 'none';
+            }
+            
+            document.getElementById('cart-total').textContent = total;
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        function placeOrder() {
+            var userType = sessionStorage.getItem('userType') || 'student';
+            var orderItems = [];
+            
+            for (var itemId in cart) {
+                var qty = cart[itemId];
+                if (qty > 0) {
+                    var card = document.querySelector('[data-item="' + itemId + '"]');
+                    orderItems.push({
+                        itemId: itemId,
+                        name: card.dataset.name,
+                        price: prices[itemId],
+                        quantity: qty,
+                        total: prices[itemId] * qty
+                    });
+                }
+            }
+            
+            if (orderItems.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            var orderTotal = orderItems.reduce(function(sum, item) { return sum + item.total; }, 0);
+            
+            var order = {
+                id: Date.now(),
+                userType: userType,
+                userId: userType === 'student' ? sessionStorage.getItem('studentRoll') || 'Student' : sessionStorage.getItem('userName') || userType,
+                items: orderItems,
+                total: orderTotal,
+                date: new Date().toISOString(),
+                status: 'Pending'
+            };
+            
+            var orders = JSON.parse(localStorage.getItem('allOrders') || '[]');
+            orders.push(order);
+            localStorage.setItem('allOrders', JSON.stringify(orders));
+            
+            cart = {};
+            document.querySelectorAll('.item-card').forEach(function(card) {
+                card.classList.remove('selected');
+                var itemId = card.dataset.item;
+                document.getElementById('qty-' + itemId).textContent = '0';
+            });
+            updateCart();
+            
+            alert('Order placed successfully! Xerox will receive your order.');
+        }
+    </script>
+</body>
+</html>
